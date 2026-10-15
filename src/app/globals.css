@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand palette */
+  --color-turq: #79cfc4;
+  --color-turq-dark: #236f6b;
+  --color-milk: #fff9ee;
+  --color-powder: #f4b6c2;
+  --color-ink: #263c3a;
+
+  /* Soft tints derived from the palette */
+  --color-turq-50: #effaf8;
+  --color-turq-100: #dcf3ef;
+  --color-turq-200: #bde7e0;
+  --color-turq-darker: #1c5a57;
+  --color-powder-50: #fff3f5;
+  --color-powder-100: #fde4ea;
+  --color-cream: #fdf2df;
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-nunito), var(--font-manrope), ui-rounded, system-ui, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(38 60 58 / 0.04), 0 12px 32px -12px rgb(35 111 107 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(38 60 58 / 0.05), 0 24px 48px -20px rgb(35 111 107 / 0.28);
+
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out infinite;
+  --animate-sway: sway 9s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-milk font-sans text-ink antialiased;
+    overflow-x: clip;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-powder);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-turq-dark);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[0.8rem] font-bold tracking-[0.08em] text-turq-dark uppercase;
+  }
+
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-[0.95rem] font-bold transition-[background-color,color,box-shadow,translate,scale] duration-200 ease-out active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply bg-turq text-ink shadow-[0_10px_24px_-10px_rgb(35_111_107/0.55)] hover:-translate-y-0.5 hover:bg-turq-dark hover:text-white;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-ink ring-1 ring-turq/50 hover:-translate-y-0.5 hover:bg-turq-50 hover:ring-turq;
+  }
+
+  .btn-ghost-light {
+    @apply bg-white/10 text-white ring-1 ring-white/30 hover:bg-white/20;
+  }
+
+  /* Organic frames — asymmetric radii, gentle enough not to clip faces. */
+  .frame-hero {
+    border-radius: 46% 46% 2.5rem 46% / 34% 34% 2.5rem 34%;
+  }
+  .frame-leaf {
+    border-radius: 3.5rem 1rem 3.5rem 3.5rem;
+  }
+  .frame-pebble {
+    border-radius: 58% 42% 52% 48% / 46% 54% 46% 54%;
+  }
+  .frame-map {
+    border-radius: 2.5rem 2.5rem 2.5rem 7rem;
+  }
+  @media (max-width: 639px) {
+    .frame-map {
+      border-radius: 2rem 2rem 2rem 4rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
