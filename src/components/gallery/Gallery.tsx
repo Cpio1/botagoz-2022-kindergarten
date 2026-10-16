@@ -3,19 +3,21 @@
 import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown, ChevronUp, ImageIcon, Maximize2 } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import type { SiteImage } from "@/lib/images";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { Cloud, Flower, Sparkle, Sprig } from "../decor/Decorations";
 import { Reveal } from "../Reveal";
-import { INITIAL_COUNT, tileClasses } from "./layout";
+import { arrangeMosaic, INITIAL_COUNT } from "./layout";
 import { Lightbox } from "./Lightbox";
 
 export function Gallery({ images }: { images: SiteImage[] }) {
   const { t } = useLanguage();
   const [expanded, setExpanded] = useState(false);
   const [active, setActive] = useState<number | null>(null);
-  const visible = expanded ? images : images.slice(0, INITIAL_COUNT);
+  const tiles = useMemo(() => arrangeMosaic(images), [images]);
+  const ordered = useMemo(() => tiles.map((tile) => tile.image), [tiles]);
+  const visible = expanded ? tiles : tiles.slice(0, INITIAL_COUNT);
   const hasMore = images.length > INITIAL_COUNT;
 
   return (
@@ -55,7 +57,7 @@ export function Gallery({ images }: { images: SiteImage[] }) {
           <>
             <ul className="grid grid-flow-dense auto-rows-[9.5rem] grid-cols-2 gap-3 sm:auto-rows-[12rem] sm:gap-4 md:grid-cols-4 lg:auto-rows-[13.5rem] lg:gap-5">
               <AnimatePresence initial={false}>
-                {visible.map((image, i) => (
+                {visible.map(({ image, className }, i) => (
                   <motion.li
                     key={image.src}
                     layout
@@ -64,7 +66,7 @@ export function Gallery({ images }: { images: SiteImage[] }) {
                     exit={{ opacity: 0, scale: 0.96 }}
                     viewport={{ once: true, margin: "0px 0px -8% 0px" }}
                     transition={{ duration: 0.5, delay: (i % INITIAL_COUNT) * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                    className={`relative ${tileClasses(i)} overflow-hidden`}
+                    className={`relative ${className} overflow-hidden`}
                   >
                     <button
                       type="button"
@@ -78,7 +80,7 @@ export function Gallery({ images }: { images: SiteImage[] }) {
                         fill
                         loading="lazy"
                         sizes="(min-width: 1024px) 600px, (min-width: 768px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                        className="object-cover object-[center_40%] transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                       />
                       <span
                         aria-hidden="true"
@@ -122,7 +124,7 @@ export function Gallery({ images }: { images: SiteImage[] }) {
         )}
       </div>
 
-      <Lightbox images={images} index={active} onChange={setActive} />
+      <Lightbox images={ordered} index={active} onChange={setActive} />
     </section>
   );
 }

@@ -11,6 +11,10 @@ import { PhotoPlaceholder } from "./PhotoPlaceholder";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+/** The frame follows the photo's proportions (within 4:5…5:4) so faces at the edges are not cropped. */
+const heroRatio = (image: SiteImage | null) =>
+  image ? Math.min(5 / 4, Math.max(4 / 5, image.width / image.height)) : 4 / 5;
+
 function Chip({
   icon: Icon,
   label,
@@ -141,7 +145,8 @@ export function Hero({ image }: { image: SiteImage | null }) {
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.1, ease }}
-            className="relative z-[5] aspect-[4/5] p-2.5"
+            className="relative z-[5] p-2.5"
+            style={{ aspectRatio: heroRatio(image) }}
           >
             <div className="frame-hero relative h-full w-full overflow-hidden bg-white shadow-lift ring-[10px] ring-white">
               {image ? (
@@ -151,7 +156,7 @@ export function Hero({ image }: { image: SiteImage | null }) {
                   fill
                   priority
                   sizes="(min-width: 1280px) 512px, (min-width: 1024px) 480px, (min-width: 640px) 448px, 90vw"
-                  className="object-cover object-[center_30%]"
+                  className="object-cover object-[center_35%]"
                 />
               ) : (
                 <PhotoPlaceholder />
