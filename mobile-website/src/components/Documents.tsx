@@ -39,15 +39,21 @@ export function Documents() {
                   {t.documents.title}
                 </h2>
                 <p className="mt-1 text-[0.8125rem] leading-snug text-ink/70">{t.documents.text}</p>
+                {url && (
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="m-btn m-btn-primary mt-2.5 px-4 text-[0.8125rem]"
+                  >
+                    {t.documents.button}
+                    <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                  </a>
+                )}
               </div>
             </div>
 
-            {url ? (
-              <a href={url} target="_blank" rel="noopener noreferrer" className="m-btn m-btn-primary mt-3.5 w-full">
-                {t.documents.button}
-                <ArrowUpRight className="size-4" aria-hidden="true" />
-              </a>
-            ) : (
+            {!url && (
               <p className="mt-3.5 flex items-center gap-2 rounded-full bg-white/70 py-1.5 pr-3 pl-1.5 text-[0.75rem] font-medium text-ink/65">
                 <span className="grid size-6 shrink-0 place-items-center rounded-full bg-white text-turq-dark">
                   <Hourglass className="size-3" aria-hidden="true" />

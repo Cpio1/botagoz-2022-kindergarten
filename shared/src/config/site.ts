@@ -76,11 +76,12 @@ export const site = {
   },
 
   /**
-   * Google Drive folder with documents. Provide it via the
-   * NEXT_PUBLIC_DOCUMENTS_URL environment variable (Vercel → Settings → Environment Variables)
-   * or paste the link here. While empty, the button is hidden.
+   * Google Drive folder with the kindergarten's documents (opened in a new tab;
+   * nothing is copied to the site). NEXT_PUBLIC_DOCUMENTS_URL can override it.
    */
-  documentsUrl: cleanUrl(process.env.NEXT_PUBLIC_DOCUMENTS_URL),
+  documentsUrl:
+    cleanUrl(process.env.NEXT_PUBLIC_DOCUMENTS_URL) ??
+    "https://drive.google.com/drive/folders/13LSnNn3x1exxuBhUla3e9o0-HFeFE28s?usp=sharing",
 
   /**
    * Production domain (the EDU.KZ domain once registered), e.g. https://botakoz2022.edu.kz

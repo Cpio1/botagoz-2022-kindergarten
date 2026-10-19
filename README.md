@@ -92,7 +92,7 @@ npm run typecheck    # TypeScript
 
 ## Переменные окружения (Vercel → Settings → Environment Variables)
 
-- `NEXT_PUBLIC_DOCUMENTS_URL` — ссылка на папку Google Drive с документами. Пока пусто, кнопка «Құжаттарды қарау» скрыта (в обеих версиях).
+- `NEXT_PUBLIC_DOCUMENTS_URL` — необязательно. Ссылка на папку Google Drive с документами уже указана в `shared/src/config/site.ts`; переменная нужна, только чтобы временно подменить её без изменения кода.
 - `NEXT_PUBLIC_SITE_URL` — домен EDU.KZ после регистрации (например `https://botakoz2022.edu.kz`). Включает canonical, sitemap и абсолютные ссылки Open Graph.
 
 ## Карта
