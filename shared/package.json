@@ -1,0 +1,14 @@
+{
+  "name": "@botagoz/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Data, translations, image loader and SVG primitives shared by the desktop and mobile sites.",
+  "dependencies": {
+    "image-size": "^2.0.4",
+    "server-only": "^0.0.1"
+  },
+  "peerDependencies": {
+    "next": "^15.5.28",
+    "react": "^19.3.1"
+  }
+}

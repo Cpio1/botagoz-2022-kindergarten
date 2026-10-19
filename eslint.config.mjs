@@ -9,7 +9,9 @@ const compat = new FlatCompat({ baseDirectory: __dirname });
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  { ignores: ["node_modules/**", ".next/**", "out/**", "next-env.d.ts"] },
+  // Absolute, so it also resolves when `next build` lints from inside website/.
+  { settings: { next: { rootDir: `${__dirname}/website/` } } },
+  { ignores: ["**/node_modules/**", "**/.next/**", "**/out/**", "**/next-env.d.ts"] },
 ];
 
 export default eslintConfig;
