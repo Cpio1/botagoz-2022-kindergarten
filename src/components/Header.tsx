@@ -73,11 +73,11 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-300 ${
         solid
-          ? "bg-milk/80 shadow-[0_8px_30px_-18px_rgb(35_111_107/0.35)] backdrop-blur-xl backdrop-saturate-150"
+          ? "bg-milk/95 shadow-[0_6px_24px_-16px_rgb(35_111_107/0.35)] lg:bg-milk/80 lg:backdrop-blur-xl lg:backdrop-saturate-150"
           : "bg-transparent"
       }`}
     >
-      <div className="container-site flex h-[4.5rem] items-center justify-between gap-4 lg:h-20">
+      <div className="container-site flex h-14 items-center justify-between gap-3 lg:h-16">
         <Link href="/" aria-label={t.a11y.home} className="shrink-0 rounded-2xl">
           <Logo subtitle={t.common.logoSubtitle} />
         </Link>
@@ -91,7 +91,7 @@ export function Header() {
                   <Link
                     href={sectionHref(id)}
                     aria-current={current ? (id === "about" && !isHome ? "page" : "location") : undefined}
-                    className={`relative rounded-full px-3 py-2 text-[0.9rem] font-semibold whitespace-nowrap transition-colors xl:px-3.5 ${
+                    className={`relative rounded-full px-2.5 py-2 text-[0.84rem] font-medium whitespace-nowrap transition-colors xl:px-3 ${
                       current ? "text-turq-dark" : "text-ink/75 hover:text-ink"
                     }`}
                   >
@@ -110,11 +110,9 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden sm:block">
-            <LanguageSwitch id="lang-header" />
-          </div>
-          <a href={site.phone.href} className="btn btn-primary hidden min-h-11 px-5 whitespace-nowrap xl:inline-flex">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          <LanguageSwitch id="lang-header" />
+          <a href={site.phone.href} className="btn btn-primary hidden min-h-10 px-4 text-[0.84rem] whitespace-nowrap xl:inline-flex">
             <Phone className="size-4" aria-hidden="true" />
             {t.common.call}
           </a>
@@ -124,7 +122,7 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu}
-            className="grid size-11 place-items-center rounded-full bg-white text-ink shadow-soft ring-1 ring-turq/25 lg:hidden"
+            className="grid size-10 place-items-center rounded-full bg-white text-ink shadow-soft ring-1 ring-turq/25 lg:hidden"
           >
             {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           </button>
@@ -136,25 +134,21 @@ export function Header() {
           <motion.div
             id="mobile-menu"
             key="mobile-menu"
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-x-0 top-full h-[calc(100dvh-4.5rem)] overflow-y-auto bg-milk lg:hidden"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute inset-x-0 top-full h-[calc(100dvh-3.5rem)] overflow-y-auto overscroll-contain bg-milk will-change-transform lg:hidden"
+            onClick={(e) => e.target === e.currentTarget && setOpen(false)}
           >
-            <nav aria-label={t.a11y.mainNav} className="container-site pt-4 pb-10">
+            <nav aria-label={t.a11y.mainNav} className="container-site pt-2 pb-8">
               <ul className="flex flex-col">
-                {NAV_ORDER.map((id, i) => (
-                  <motion.li
-                    key={id}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.04 * i, duration: 0.25 }}
-                  >
+                {NAV_ORDER.map((id) => (
+                  <li key={id}>
                     <Link
                       href={sectionHref(id)}
                       onClick={() => setOpen(false)}
-                      className={`flex min-h-14 items-center justify-between border-b border-turq/20 font-display text-xl font-bold ${
+                      className={`flex min-h-12 items-center justify-between border-b border-turq/15 font-display text-[1.05rem] font-semibold ${
                         active === id ? "text-turq-dark" : "text-ink"
                       }`}
                     >
@@ -164,12 +158,11 @@ export function Header() {
                         className={`size-2 rounded-full ${active === id ? "bg-powder" : "bg-turq/30"}`}
                       />
                     </Link>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
-              <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-                <LanguageSwitch id="lang-mobile" />
-                <a href={site.phone.href} className="btn btn-primary">
+              <div className="mt-6">
+                <a href={site.phone.href} className="btn btn-primary w-full min-[400px]:w-auto">
                   <Phone className="size-4" aria-hidden="true" />
                   {site.phone.display}
                 </a>

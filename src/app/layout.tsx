@@ -10,7 +10,7 @@ import "./globals.css";
 // cyrillic-ext covers the Kazakh letters Ә Ғ Қ Ң Ө Ұ Ү Һ І.
 const nunito = Nunito({
   subsets: ["latin", "cyrillic", "cyrillic-ext"],
-  weight: ["700", "800", "900"],
+  weight: ["600", "700"],
   variable: "--font-nunito",
   display: "swap",
 });

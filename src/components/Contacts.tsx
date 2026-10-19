@@ -56,53 +56,53 @@ export function Contacts() {
       <div className="bg-milk">
         <Wave fill="#effaf8" variant={1} className="-mb-px" />
       </div>
-      <div className="relative bg-turq-50 pt-10 pb-20 sm:pb-24 lg:pt-14">
+      <div className="relative bg-turq-50 pt-6 pb-12 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-20">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-          <Blob variant={0} className="absolute top-20 -left-32 w-[24rem] opacity-60" color="#dcf3ef" />
-          <Cloud className="absolute top-4 right-[8%] w-32 opacity-90" />
+          <Blob variant={0} className="absolute top-20 -left-32 hidden w-[20rem] opacity-60 md:block" color="#dcf3ef" />
+          <Cloud className="absolute top-2 right-[6%] w-16 opacity-90 md:w-24" />
         </div>
 
-        <div className="container-site relative grid gap-12 lg:grid-cols-12 lg:gap-14">
+        <div className="container-site relative grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
             <Reveal>
               <p className="eyebrow">
-                <Daisy className="size-5" color="#F4B6C2" />
+                <Daisy className="size-3.5" color="#F4B6C2" />
                 {t.contacts.eyebrow}
               </p>
               <h2
                 id="contacts-title"
-                className="mt-4 text-[clamp(2rem,4.4vw,3rem)] leading-[1.08] font-extrabold tracking-tight text-ink"
+                className="mt-2.5 text-[clamp(1.5rem,3vw,2.1rem)] leading-[1.15] font-bold tracking-tight text-ink"
               >
                 {t.contacts.title}
               </h2>
             </Reveal>
 
             <Reveal delay={0.08}>
-              <dl className="mt-9 space-y-5">
+              <dl className="mt-6 grid gap-3.5 sm:mt-7 sm:gap-4">
                 {rows.map(({ icon: Icon, label, content }, i) => (
-                  <div key={label} className="flex gap-4">
+                  <div key={label} className="flex items-start gap-3">
                     <dt className="contents">
                       <span
-                        className={`grid size-12 shrink-0 place-items-center rounded-[1rem_1rem_1rem_0.35rem] shadow-soft ${
+                        className={`grid size-10 shrink-0 place-items-center rounded-[0.8rem_0.8rem_0.8rem_0.3rem] shadow-soft ${
                           i % 2 ? "bg-powder-100 text-[#a4495d]" : "bg-white text-turq-dark"
                         }`}
                       >
-                        <Icon className="size-5" aria-hidden="true" />
+                        <Icon className="size-[1.1rem]" aria-hidden="true" />
                       </span>
                       <span className="sr-only">{label}</span>
                     </dt>
-                    <dd className="min-w-0 pt-0.5">
-                      <span aria-hidden="true" className="block text-[0.78rem] font-bold tracking-[0.08em] text-ink/55 uppercase">
+                    <dd className="min-w-0 flex-1">
+                      <span aria-hidden="true" className="block text-[0.68rem] font-semibold tracking-[0.08em] text-ink/55 uppercase">
                         {label}
                       </span>
-                      <span className="mt-0.5 block text-[1.02rem] leading-snug font-semibold text-ink">{content}</span>
+                      <span className="mt-0.5 block text-[0.93rem] leading-snug font-medium break-words text-ink">{content}</span>
                     </dd>
                   </div>
                 ))}
               </dl>
             </Reveal>
 
-            <Reveal delay={0.14} className="mt-9 flex flex-col gap-3 min-[420px]:flex-row min-[420px]:flex-wrap">
+            <Reveal delay={0.14} className="mt-7 grid gap-2.5 min-[400px]:grid-cols-2 sm:flex sm:flex-wrap">
               <a href={site.phone.href} className="btn btn-primary">
                 <Phone className="size-4" aria-hidden="true" />
                 {t.common.call}
@@ -126,10 +126,10 @@ export function Contacts() {
           </div>
 
           <Reveal delay={0.1} className="relative lg:col-span-7">
-            <Flower className="absolute -top-5 -right-2 z-10 w-14 animate-float sm:-right-5" />
-            <Sparkle className="absolute -bottom-3 left-[30%] z-10 w-6" color="#F4B6C2" />
-            <div className="frame-map relative overflow-hidden bg-white p-2.5 shadow-lift">
-              <div className="frame-map relative h-[22rem] overflow-hidden bg-turq-100 sm:h-[26rem] lg:h-[30rem]">
+            <Flower className="absolute -top-4 right-2 z-10 w-9 sm:-right-3 sm:w-11" />
+            <Sparkle className="absolute top-[45%] -left-2 z-10 hidden w-5 md:block" color="#F4B6C2" />
+            <div className="frame-map relative overflow-hidden bg-white p-1.5 shadow-lift sm:p-2">
+              <div className="frame-map relative h-[15rem] overflow-hidden bg-turq-100 min-[400px]:h-[17rem] sm:h-[20rem] lg:h-[22rem]">
                 <iframe
                   key={lang}
                   title={t.contacts.mapTitle}
@@ -141,7 +141,7 @@ export function Contacts() {
                 />
               </div>
             </div>
-            <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 pl-2 text-[0.95rem] font-semibold">
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-0 pl-1 text-[0.86rem] font-medium">
               <a
                 href={links.twoGis}
                 target="_blank"

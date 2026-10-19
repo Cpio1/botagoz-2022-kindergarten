@@ -14,7 +14,7 @@ export function LanguageSwitch({ id = "lang" }: { id?: string }) {
     <div
       role="group"
       aria-label={t.a11y.language}
-      className="relative inline-flex rounded-full bg-white p-1 shadow-soft ring-1 ring-turq/25"
+      className="relative inline-flex rounded-full bg-white p-0.5 shadow-soft ring-1 ring-turq/25"
     >
       {LANGS.map((code) => {
         const active = code === lang;
@@ -26,7 +26,7 @@ export function LanguageSwitch({ id = "lang" }: { id?: string }) {
             onClick={() => setLang(code)}
             aria-pressed={active}
             aria-label={FULL[code]}
-            className={`relative min-h-9 min-w-11 rounded-full px-3 text-[0.8rem] font-extrabold tracking-wide transition-colors ${
+            className={`relative min-h-8 min-w-9 rounded-full px-2.5 text-[0.72rem] font-semibold tracking-wide sm:min-w-10 transition-colors ${
               active ? "text-ink" : "text-ink/55 hover:text-ink"
             }`}
           >

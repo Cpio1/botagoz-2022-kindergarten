@@ -38,28 +38,28 @@ export function Documents() {
   const url = site.documentsUrl;
 
   return (
-    <section id="documents" aria-labelledby="documents-title" className="relative bg-milk pb-20 sm:pb-24">
+    <section id="documents" aria-labelledby="documents-title" className="relative scroll-mt-4 bg-milk pb-12 sm:pb-14 lg:pb-16">
       <div className="container-site">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[3rem_3rem_3rem_1rem] bg-powder-100 px-6 py-12 sm:px-12 sm:py-14 lg:rounded-[4rem_4rem_10rem_1.5rem] lg:px-16 lg:py-16">
+          <div className="relative overflow-hidden rounded-[2rem_2rem_2rem_0.75rem] bg-powder-100 px-5 py-7 sm:rounded-[2.5rem_2.5rem_2.5rem_1rem] sm:px-10 sm:py-9 lg:rounded-[3rem_3rem_7rem_1.25rem] lg:px-14 lg:py-9">
             <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-              <Blob variant={1} className="absolute -top-28 -right-24 w-[26rem] opacity-70" color="#fff3f5" />
-              <Dots className="absolute bottom-8 left-[46%] w-16 opacity-40" color="#ffffff" />
-              <Sparkle className="absolute top-10 left-[42%] w-5 animate-float" color="#ffffff" />
+              <Blob variant={1} className="absolute -top-20 -right-20 w-64 opacity-70 md:-top-24 md:w-[21rem]" color="#fff3f5" />
+              <Dots className="absolute bottom-6 left-[46%] hidden w-12 opacity-40 md:block" color="#ffffff" />
+              <Sparkle className="absolute top-8 left-[42%] hidden w-4 md:block" color="#ffffff" />
             </div>
 
-            <div className="relative grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-              <div className="order-2 md:order-1">
+            <div className="relative grid items-center gap-6 md:grid-cols-[1.1fr_0.9fr] md:gap-10 lg:gap-14">
+              <div className="order-2 text-center md:order-1 md:text-left">
                 <h2
                   id="documents-title"
-                  className="text-[clamp(2.2rem,5vw,3.5rem)] leading-none font-black tracking-tight text-ink"
+                  className="text-[clamp(1.5rem,3vw,2.1rem)] leading-none font-bold tracking-tight text-ink"
                 >
                   {t.documents.title}
                 </h2>
-                <p className="mt-5 max-w-[28rem] text-[1.08rem] leading-relaxed text-ink/75">{t.documents.text}</p>
+                <p className="mx-auto mt-3 max-w-[26rem] text-[0.95rem] leading-relaxed text-ink/75 sm:mt-4 md:mx-0">{t.documents.text}</p>
 
                 {url ? (
-                  <a href={url} target="_blank" rel="noopener noreferrer" className="btn btn-primary group mt-8">
+                  <a href={url} target="_blank" rel="noopener noreferrer" className="btn btn-primary group mt-5 sm:mt-6">
                     {t.documents.button}
                     <ArrowUpRight
                       className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -67,8 +67,8 @@ export function Documents() {
                     />
                   </a>
                 ) : (
-                  <p className="mt-8 inline-flex items-center gap-3 rounded-full bg-white/70 py-2.5 pr-5 pl-2.5 text-[0.95rem] font-semibold text-ink/70">
-                    <span className="grid size-8 place-items-center rounded-full bg-white text-turq-dark">
+                  <p className="mt-5 inline-flex items-center gap-2.5 rounded-full bg-white/70 py-2 pr-4 pl-2 text-left text-[0.85rem] font-medium text-ink/70 sm:mt-6">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-full bg-white text-turq-dark">
                       <Hourglass className="size-4" aria-hidden="true" />
                     </span>
                     {t.documents.pending}
@@ -76,11 +76,11 @@ export function Documents() {
                 )}
               </div>
 
-              <div className="relative order-1 mx-auto w-full max-w-[18rem] md:order-2 md:max-w-[22rem]">
+              <div className="relative order-1 mx-auto w-full max-w-[10rem] sm:max-w-[12rem] md:order-2 md:max-w-[14rem]">
                 <Blob variant={2} className="absolute inset-[-8%] opacity-90" color="#ffffff" />
                 <DocumentsIllustration className="relative w-full drop-shadow-[0_18px_24px_rgb(35_111_107/0.18)]" />
-                <Flower className="absolute -top-2 -right-1 w-14 animate-float" petal="#ffffff" accent={TURQ} />
-                <Sprig className="absolute -bottom-3 -left-2 w-12 origin-bottom animate-sway" color={TURQ_DARK} />
+                <Flower className="absolute -top-2 -right-1 w-9 md:w-11" petal="#ffffff" accent={TURQ} />
+                <Sprig className="absolute -bottom-3 -left-2 hidden w-10 origin-bottom animate-sway md:block" color={TURQ_DARK} />
               </div>
             </div>
           </div>

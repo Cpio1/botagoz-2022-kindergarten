@@ -33,25 +33,35 @@
       transform: translateY(0);
     }
     50% {
-      transform: translateY(-8px);
+      transform: translateY(-5px);
     }
   }
 
   @keyframes sway {
     0%,
     100% {
-      transform: rotate(-4deg);
+      transform: rotate(-2.5deg);
     }
     50% {
-      transform: rotate(4deg);
+      transform: rotate(2.5deg);
     }
   }
 }
 
 @layer base {
+  :root {
+    /* Sticky header height — keep in sync with Header (h-14 / lg:h-16). */
+    --header-h: 3.5rem;
+  }
+  @media (min-width: 1024px) {
+    :root {
+      --header-h: 4rem;
+    }
+  }
+
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5.5rem;
+    scroll-padding-top: var(--header-h);
     -webkit-text-size-adjust: 100%;
   }
 
@@ -86,19 +96,48 @@
 
 @layer components {
   .container-site {
-    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+    @apply mx-auto w-full max-w-[1120px] px-4 sm:px-6 lg:px-8;
+  }
+
+  /*
+   * A section that reads as one complete screen on desktop: it grows to the
+   * visible height (below the header) and centres its content, but never
+   * shrinks the content — taller sections simply keep their natural height.
+   */
+  @media (min-width: 1024px) and (min-height: 620px) {
+    .screen-fit {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: min(calc(100svh - var(--header-h)), 54rem);
+    }
+  }
+
+  /*
+   * Gallery rows scale with the window height so the title, six photos and
+   * the "show all" button fit one screen; the grid narrows with the rows so
+   * tiles keep their proportions instead of being cropped harder.
+   */
+  .gallery-frame {
+    --row: clamp(7.25rem, calc((100svh - var(--header-h) - 18rem) / 3), 10.5rem);
+  }
+  @media (min-width: 1024px) {
+    .gallery-frame {
+      max-width: calc(var(--row) * 6 + 3rem);
+      margin-inline: auto;
+    }
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-[0.8rem] font-bold tracking-[0.08em] text-turq-dark uppercase;
+    @apply inline-flex items-center gap-1.5 text-[0.72rem] font-semibold tracking-[0.1em] text-turq-dark uppercase;
   }
 
   .btn {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-[0.95rem] font-bold transition-[background-color,color,box-shadow,translate,scale] duration-200 ease-out active:scale-[0.98];
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[0.875rem] font-semibold transition-[background-color,color,box-shadow,translate,scale] duration-200 ease-out active:scale-[0.98];
   }
 
   .btn-primary {
-    @apply bg-turq text-ink shadow-[0_10px_24px_-10px_rgb(35_111_107/0.55)] hover:-translate-y-0.5 hover:bg-turq-dark hover:text-white;
+    @apply bg-turq text-ink shadow-[0_8px_20px_-10px_rgb(35_111_107/0.5)] hover:-translate-y-0.5 hover:bg-turq-dark hover:text-white;
   }
 
   .btn-secondary {
@@ -111,21 +150,33 @@
 
   /* Organic frames — asymmetric radii, gentle enough not to clip faces. */
   .frame-hero {
-    border-radius: 46% 46% 2.5rem 46% / 34% 34% 2.5rem 34%;
+    border-radius: 46% 46% 2rem 46% / 34% 34% 2rem 34%;
   }
   .frame-leaf {
-    border-radius: 3.5rem 1rem 3.5rem 3.5rem;
+    border-radius: 2.75rem 0.85rem 2.75rem 2.75rem;
   }
   .frame-pebble {
     border-radius: 58% 42% 52% 48% / 46% 54% 46% 54%;
   }
   .frame-map {
-    border-radius: 2.5rem 2.5rem 2.5rem 7rem;
+    border-radius: 2rem 2rem 2rem 5.5rem;
   }
   @media (max-width: 639px) {
-    .frame-map {
-      border-radius: 2rem 2rem 2rem 4rem;
+    .frame-leaf {
+      border-radius: 2rem 0.75rem 2rem 2rem;
     }
+    .frame-map {
+      border-radius: 1.5rem 1.5rem 1.5rem 3rem;
+    }
+  }
+}
+
+/* Phones: keep decorations still — endless SVG animations cost battery and scroll smoothness. */
+@media (max-width: 767px) {
+  .animate-float,
+  .animate-float-slow,
+  .animate-sway {
+    animation: none;
   }
 }
 

@@ -76,7 +76,7 @@ export function Lightbox({ images, index, onChange }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#16302e]/90 p-4 backdrop-blur-md sm:p-10"
+          className="fixed inset-0 z-[100] flex items-center justify-center overscroll-contain bg-[#16302e]/95 px-3 pt-16 pb-24 sm:p-10 sm:backdrop-blur-md"
           onClick={(e) => e.target === e.currentTarget && onChange(null)}
           onTouchStart={(e) => (touchStart.current = e.touches[0].clientX)}
           onTouchEnd={(e) => {
@@ -91,7 +91,7 @@ export function Lightbox({ images, index, onChange }: Props) {
             initial={{ opacity: 0, scale: 0.97 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-none relative h-full max-h-[85vh] w-full max-w-6xl"
+            className="pointer-events-none relative h-full w-full max-w-5xl sm:max-h-[85dvh]"
           >
             <Image
               src={image.src}
@@ -103,7 +103,7 @@ export function Lightbox({ images, index, onChange }: Props) {
           </motion.div>
 
           <p
-            className="absolute top-5 left-5 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white tabular-nums sm:top-6 sm:left-6"
+            className="absolute top-4 left-4 rounded-full bg-white/10 px-3 py-1.5 text-[0.8rem] font-medium text-white tabular-nums sm:top-6 sm:left-6"
             aria-live="polite"
           >
             {index + 1} / {count}
@@ -114,7 +114,7 @@ export function Lightbox({ images, index, onChange }: Props) {
             type="button"
             onClick={() => onChange(null)}
             aria-label={t.gallery.close}
-            className="absolute top-4 right-4 grid size-12 place-items-center rounded-full bg-white text-ink shadow-lift transition-transform hover:scale-105 sm:top-6 sm:right-6"
+            className="absolute top-3 right-3 grid size-11 place-items-center rounded-full bg-white text-ink shadow-lift transition-transform hover:scale-105 sm:top-6 sm:right-6"
           >
             <X className="size-5" aria-hidden="true" />
           </button>
@@ -125,7 +125,7 @@ export function Lightbox({ images, index, onChange }: Props) {
                 type="button"
                 onClick={() => go(-1)}
                 aria-label={t.gallery.prev}
-                className="absolute bottom-6 left-1/2 grid size-12 -translate-x-[calc(100%+0.5rem)] place-items-center rounded-full bg-white/90 text-ink shadow-lift transition-transform hover:scale-105 sm:top-1/2 sm:bottom-auto sm:left-6 sm:-translate-x-0 sm:-translate-y-1/2"
+                className="absolute bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-1/2 grid size-12 -translate-x-[calc(100%+0.5rem)] place-items-center rounded-full bg-white/90 text-ink shadow-lift transition-transform hover:scale-105 sm:top-1/2 sm:bottom-auto sm:left-6 sm:-translate-x-0 sm:-translate-y-1/2"
               >
                 <ChevronLeft className="size-6" aria-hidden="true" />
               </button>
@@ -133,7 +133,7 @@ export function Lightbox({ images, index, onChange }: Props) {
                 type="button"
                 onClick={() => go(1)}
                 aria-label={t.gallery.next}
-                className="absolute right-1/2 bottom-6 grid size-12 translate-x-[calc(100%+0.5rem)] place-items-center rounded-full bg-white/90 text-ink shadow-lift transition-transform hover:scale-105 sm:top-1/2 sm:right-6 sm:bottom-auto sm:translate-x-0 sm:-translate-y-1/2"
+                className="absolute right-1/2 bottom-[max(1.25rem,env(safe-area-inset-bottom))] grid size-12 translate-x-[calc(100%+0.5rem)] place-items-center rounded-full bg-white/90 text-ink shadow-lift transition-transform hover:scale-105 sm:top-1/2 sm:right-6 sm:bottom-auto sm:translate-x-0 sm:-translate-y-1/2"
               >
                 <ChevronRight className="size-6" aria-hidden="true" />
               </button>
